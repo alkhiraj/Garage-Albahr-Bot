@@ -1,0 +1,19 @@
+name = "kart-albahr-bot"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# ── Secrets ──────────────────────────────────────────
+# أضف كل سر بهذا الأمر:
+#   npx wrangler secret put BOT_TOKEN
+#   npx wrangler secret put SB_URL
+#   npx wrangler secret put SB_KEY
+#   npx wrangler secret put GAPI_ID
+#   npx wrangler secret put GAPI_TOKEN
+#   npx wrangler secret put REVIEW_LINK
+#
+# BOT_TOKEN   = توكن البوت الجديد من BotFather
+# SB_URL      = https://gtoriksnzmyukeuanfbb.supabase.co
+# SB_KEY      = مفتاح الـ anon من Supabase
+# GAPI_ID     = رقم Instance من Green API
+# GAPI_TOKEN  = توكن Green API
+# REVIEW_LINK = رابط Google Review للكراج
