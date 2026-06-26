@@ -335,13 +335,26 @@ async function handle(update) {
   if (text === '/start' || text === '/help') {
     return send(chatId,
       `🔧 <b>بوت كروت البحر</b>\n` +
-      `─────────────────────\n\n` +
-      `/فتح — كرت جديد (فحص أو إصلاح)\n` +
-      `/كروت — الكروت المفتوحة\n` +
-      `/اغلاق — إغلاق كرت إصلاح\n` +
-      `/الغاء — إلغاء العملية الحالية`
+      `كراج البحر — اختر من القائمة 👇`,
+      {
+        reply_markup: {
+          keyboard: [
+            [{ text: '📝 فتح كرت جديد' }, { text: '📋 الكروت المفتوحة' }],
+            [{ text: '🔒 إغلاق كرت' },    { text: '❌ إلغاء' }],
+          ],
+          resize_keyboard:   true,
+          persistent:        true,
+          input_field_placeholder: 'اختر من القائمة أو اكتب...',
+        },
+      }
     );
   }
+
+  // ── ربط أزرار الكيبورد بالأوامر ──────────────────────
+  if (text === '📝 فتح كرت جديد')    return handle({ ...update, message: { ...update.message, text: '/فتح' } });
+  if (text === '📋 الكروت المفتوحة') return handle({ ...update, message: { ...update.message, text: '/كروت' } });
+  if (text === '🔒 إغلاق كرت')       return handle({ ...update, message: { ...update.message, text: '/اغلاق' } });
+  if (text === '❌ إلغاء')            return handle({ ...update, message: { ...update.message, text: '/الغاء' } });
 
   if (text === '/الغاء') {
     await clearSession(chatId);
