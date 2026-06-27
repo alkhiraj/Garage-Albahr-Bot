@@ -652,7 +652,7 @@ async function handle(update) {
 // ─── Entry Point ──────────────────────────────────────
 export default {
   async fetch(request, env) {
-    ENV = env;
+    Object.assign(ENV, env);
     if (request.method === 'POST') {
       const update = await request.json();
       await handle(update);
