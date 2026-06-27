@@ -654,8 +654,14 @@ export default {
   async fetch(request, env) {
     Object.assign(ENV, env);
     if (request.method === 'POST') {
-      const update = await request.json();
-      await handle(update);
+      let update;
+      try {
+        update = await request.json();
+        await sb('POST', 'bot_logs', { msg: `IN: ${JSON.stringify(update).slice(0,300)}` });
+        await handle(update);
+      } catch(e) {
+        try { await sb('POST', 'bot_logs', { msg: `ERR: ${e.message}` }); } catch(_) {}
+      }
     }
     return new Response('ok');
   },
